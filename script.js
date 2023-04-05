@@ -17,26 +17,26 @@ var characters = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_
 var numbers = [0,1,2,3,4,5,6,7,8,9];
 
 
-// function for password length
-function length() {
-  var pswdLength = window.prompt("please pick the length of your password, between 8 - 128 characters.");
+// // function for password length
+// function length() {
+  
+//   // check length-of-password requirement met
+//   if (pswdLength < 8 || pswdLength > 128) {
+//     window.alert("Required password length is 8 - 128 characters, please try again.");
+//     return length();
+//   }
+  
+//   if (Number.isNaN(pswdLength)) {
+//     window.alert("Password length must be a numeric response")
+//     return length();
+//   }
+// }
 
-  // check length-of-password requirement met
-  if (pswdLength < 8 || pswdLength > 128) {
-    window.alert("Required password length is 8 - 128 characters, please try again.");
-    return length();
-  }
-
-  if (Number.isNaN(pswdLength)) {
-    window.alert("Password length must be a numeric response")
-    return length();
-  }
-}
-
- // get criteria for rest of password according to the bootcamp guidelines
+// get criteria for rest of password according to the bootcamp guidelines
 function allOptions() {
   var isValid = false;
-
+  
+  var pswdLength = window.prompt("please pick the length of your password, between 8 - 128 characters.");
   var wantLowercase = window.confirm("Do you want to use lower-case letters? (click OK if you do, CANCEL for nope)");
   var wantUppercase = window.confirm("Do you want to use upper-case letters? (click OK if you do, CANCEL for nope)");
   var wantNumbers = window.confirm("Do you want to use numbers? (click OK if you do, CANCEL for nope)");
@@ -48,13 +48,27 @@ function allOptions() {
     wantUppercase === false &&
     wantNumbers === false &&
     wantCharacters === false)
-    window.alert("must select at least one type of character");
-  else
+    window.alert("User must select at least one type of character");
+  else if (pswdLength < 8 || pswdLength > 128) {
+    window.alert("Required password length is 8 - 128 characters, please try again.");
+  }
+  else if (Number.isNaN(pswdLength)) {
+    window.alert("Password length must be a numeric response")
+  }
+  else 
     isValid = true;
+}
+while(!isvalid) {
+  return allOptions()
 }
 
 // randomly generate characters for password
 function generatePassword() {
+  var chosenLowercase = [Math.floor(Math.random() * lowerCase.length)];
+  var chosenUppercase = [Math.floor(Math.random() * upperCase.length)];
+  var chosenNumbers = [Math.floor(Math.random() * numbers.length)];
+  var chosenChars = [Math.floor(Math.random() * characters.length)];
+
 
 
   // return UserPassword;
