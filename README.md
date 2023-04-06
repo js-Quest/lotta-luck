@@ -17,7 +17,7 @@ This project demonstrates the use of JavaScript.  More specifically, iteration o
 N/A
 
 ## Usage
-Navigate to the deployed page:
+Navigate to the deployed page:  https://js-quest.github.io/lotta-luck/
 
 <img src="Screenshot 2023-04-06 at 6.15.31 PM.png" alt = "password generator">
 

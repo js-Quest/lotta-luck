@@ -40,7 +40,7 @@ function allOptions() {
   }
   else if (pswdLength < 8 || pswdLength > 128) {
     window.alert("Required password length is 8 - 128 characters, please try again.");
-    // re-run from start if not valid response, so you don't have to click through every option to restart.
+    // auto re-start if not valid response, don't have to click again on "generate password".
     allOptions();
   }
   else if (isNaN(pswdLength)) {
