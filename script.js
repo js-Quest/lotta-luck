@@ -61,26 +61,26 @@ function generatePassword() {
 
   if (answers.wantLowercase) {
     for (var x of lowerCase)
-    compiledPswd.push(i);
+    compiledPswd.push(x);
   }
 
   if (answers.wantUppercase) {
     for (var x of upperCase)
-    compiledPswd.push(i);
+    compiledPswd.push(x);
   }
 
   if (answers.wantNumbers) {
     for (var x of numbers)
-      compiledPswd.push(i);
+      compiledPswd.push(x);
   }
 
   if (answers.wantCharacters) {
     for (var x of characters)
-      compiledPswd.push(i);
+      compiledPswd.push(x);
   }
 
-  for (var i = 0; i < answers.length; i++) {
-    userPassword += compiledPswd[Math.floor(Math.random() * compiledPswd.length)];
+  for (var x = 0; x < answers.length; x++) {
+    userPassword + compiledPswd[Math.floor(Math.random() * compiledPswd.length)];
   }
 
 
@@ -96,7 +96,7 @@ function generatePassword() {
 
 
 
-  // return userPassword;
+  return userPassword;
 }
 // Write password to the #password input
 function writePassword() {
