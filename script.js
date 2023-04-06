@@ -23,22 +23,29 @@ function allOptions() {
   var wantUppercase = window.confirm("Do you want to use upper-case letters? (click OK if you do, CANCEL for nope)");
   var wantNumbers = window.confirm("Do you want to use numbers? (click OK if you do, CANCEL for nope)");
   var wantCharacters = window.confirm("Do you want to use special characters? (click OK if you do, CANCEL for nope)");
-
+  console.log(pswdLength);
   // check to make sure one type of character is chosen
   if (
     wantLowercase === false &&
     wantUppercase === false &&
     wantNumbers === false &&
-    wantCharacters === false)
+    wantCharacters === false) {
     window.alert("User must select at least one type of character, please try again.");
+    allOptions();
+  }
   else if(pswdLength < 8 || pswdLength > 128) {
     window.alert("Required password length is 8 - 128 characters, please try again.");
+    allOptions();
   }
-  else if (pswdLength = NaN) {
+  else if (isNaN(pswdLength)) {
     window.alert("Password length must be a numeric response, please try again.")
+    allOptions();
   }
-  else 
+  else {
     isValid = true;
+  
+  return {wantLowercase, wantUppercase, wantNumbers, wantCharacters, pswdLength}
+  }
 
 }
 
@@ -47,7 +54,7 @@ function generatePassword() {
   var answers = allOptions();
   var compiledPswd = [];
   var userPassword = "";
-
+  console.log(answers);
   if (answers.wantLowercase) {
     for (var x of lowerCase)
     compiledPswd.push(x);
@@ -58,7 +65,7 @@ function generatePassword() {
     compiledPswd.push(x);
   }
 
-  if (answers.wantCharacters) {
+  if (answers.wantNumbers) {
     for (var x of numbers)
       compiledPswd.push(x);
   }
@@ -67,10 +74,15 @@ function generatePassword() {
     for (var x of characters)
       compiledPswd.push(x);
   }
-
-  for (x = compiledPswd.length - 1; x < pswdLength; x++) {
+  console.log(answers.pswdLength);
+  for (var i = 0; i < answers.pswdLength; i++) {
+    var test = Math.floor(Math.random() * compiledPswd.length)
+    console.log(test);
     userPassword += compiledPswd[Math.floor(Math.random() * compiledPswd.length)];
+    console.log(userPassword);
   }
+console.log(compiledPswd);
+console.log(userPassword);
 
   return userPassword;
 }
