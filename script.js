@@ -1,13 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-}
 
 console.log("ding");
   
@@ -57,11 +51,37 @@ function allOptions() {
 }
 
 function generatePassword() {
-  
+  var answers = allOptions();
+  var compiledPswd = [];
+  var userPassword = "";
 
-  var randomLowercase = [Math.floor(Math.random() * lowerCase.length)];
-  var chosenLowercase = lowerCase[randomLowercase]
-  console.log(chosenLowercase);
+  // var randomLowercase = [Math.floor(Math.random() * lowerCase.length)];
+  // var chosenLowercase = lowerCase[randomLowercase]
+  // console.log(chosenLowercase);
+
+  if (answers.wantLowercase) {
+    for (var x of lowerCase)
+    compiledPswd.push(i);
+  }
+
+  if (answers.wantUppercase) {
+    for (var x of upperCase)
+    compiledPswd.push(i);
+  }
+
+  if (answers.wantNumbers) {
+    for (var x of numbers)
+      compiledPswd.push(i);
+  }
+
+  if (answers.wantCharacters) {
+    for (var x of characters)
+      compiledPswd.push(i);
+  }
+
+  for (var i = 0; i < answers.length; i++) {
+    userPassword += compiledPswd[Math.floor(Math.random() * compiledPswd.length)];
+  }
 
 
   // var randomLowercase = [Math.floor(Math.random() * lowerCase.length)];
@@ -78,15 +98,19 @@ function generatePassword() {
 
   // return userPassword;
 }
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
+  passwordText.value = password;
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 // function on password button that runs it
 
-
-writePassword()
 
 // Need the following variables:
     // !selected length of the password
