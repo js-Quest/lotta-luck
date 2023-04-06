@@ -41,6 +41,15 @@ function allOptions() {
   var wantUppercase = window.confirm("Do you want to use upper-case letters? (click OK if you do, CANCEL for nope)");
   var wantNumbers = window.confirm("Do you want to use numbers? (click OK if you do, CANCEL for nope)");
   var wantCharacters = window.confirm("Do you want to use special characters? (click OK if you do, CANCEL for nope)");
+  var chosenOptions = {
+    pswdLength: pswdLength,
+    wantLowercase: wantLowercase,
+    wantUppercase: wantUppercase,
+    wantNumbers: wantNumbers,
+    wantCharacters: wantCharacters
+  }
+
+
 
   // check to make sure one type of character is chosen
   if (
@@ -49,18 +58,21 @@ function allOptions() {
     wantNumbers === false &&
     wantCharacters === false)
     window.alert("User must select at least one type of character");
+    allOptions();
   else if (pswdLength < 8 || pswdLength > 128) {
     window.alert("Required password length is 8 - 128 characters, please try again.");
+    allOptions();
   }
   else if (Number.isNaN(pswdLength)) {
     window.alert("Password length must be a numeric response")
+    allOptions();
   }
   else 
     isValid = true;
 }
-while(!isvalid) {
-  return allOptions()
-}
+// while(!isvalid) {
+//   return allOptions()
+
 
 // randomly generate characters for password
 function generatePassword() {
