@@ -7,8 +7,11 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
+
+console.log("ding");
+  
+
 
 // variables
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -16,21 +19,6 @@ var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var characters = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "<", ">", "?"];
 var numbers = [0,1,2,3,4,5,6,7,8,9];
 
-
-// // function for password length
-// function length() {
-  
-//   // check length-of-password requirement met
-//   if (pswdLength < 8 || pswdLength > 128) {
-//     window.alert("Required password length is 8 - 128 characters, please try again.");
-//     return length();
-//   }
-  
-//   if (Number.isNaN(pswdLength)) {
-//     window.alert("Password length must be a numeric response")
-//     return length();
-//   }
-// }
 
 // get criteria for rest of password according to the bootcamp guidelines
 function allOptions() {
@@ -58,34 +46,37 @@ function allOptions() {
     wantNumbers === false &&
     wantCharacters === false)
     window.alert("User must select at least one type of character");
-    allOptions();
-  else if (pswdLength < 8 || pswdLength > 128) {
+  else if(pswdLength < 8 || pswdLength > 128) {
     window.alert("Required password length is 8 - 128 characters, please try again.");
-    allOptions();
   }
   else if (Number.isNaN(pswdLength)) {
     window.alert("Password length must be a numeric response")
-    allOptions();
   }
   else 
     isValid = true;
 }
-// while(!isvalid) {
-//   return allOptions()
 
-
-// randomly generate characters for password
 function generatePassword() {
-  // var chosenLowercase = [Math.floor(Math.random() * lowerCase.length)];
+  
+
+  var randomLowercase = [Math.floor(Math.random() * lowerCase.length)];
+  var chosenLowercase = lowerCase[randomLowercase]
+  console.log(chosenLowercase);
+
+
+  // var randomLowercase = [Math.floor(Math.random() * lowerCase.length)];
+  // var chosenLowercase = lowercase[randomLowercase]
   // var chosenUppercase = [Math.floor(Math.random() * upperCase.length)];
   // var chosenNumbers = [Math.floor(Math.random() * numbers.length)];
   // var chosenChars = [Math.floor(Math.random() * characters.length)];
+
+
 
   
 
 
 
-  // return UserPassword;
+  // return userPassword;
 }
 
 
