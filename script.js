@@ -2,29 +2,34 @@
 var generateBtn = document.querySelector("#generate");
 
 
-
+// testing log works, javascript sourced in index correctly
 console.log("ding");
-  
 
 
-// variables
+
+// arrays
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var characters = ["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "<", ">", "?"];
-var numbers = ["0","1","2","3","4","5","6","7","8","9"];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 
 // get criteria for rest of password according to the bootcamp guidelines
 function allOptions() {
   var isValid = false;
-  
+
   var pswdLength = window.prompt("please pick the length of your password, between 8 - 128 characters.");
   var wantLowercase = window.confirm("Do you want to use lower-case letters? (click OK if you do, CANCEL for nope)");
   var wantUppercase = window.confirm("Do you want to use upper-case letters? (click OK if you do, CANCEL for nope)");
   var wantNumbers = window.confirm("Do you want to use numbers? (click OK if you do, CANCEL for nope)");
   var wantCharacters = window.confirm("Do you want to use special characters? (click OK if you do, CANCEL for nope)");
+
+
+  // check to make sure pswdLength has a value, had issue with this (see commit "fixed generator and allOptions functions").
   console.log(pswdLength);
-  // check to make sure one type of character is chosen
+
+
+  // check to make sure one type of character is chosen.
   if (
     wantLowercase === false &&
     wantUppercase === false &&
@@ -33,8 +38,9 @@ function allOptions() {
     window.alert("User must select at least one type of character, please try again.");
     allOptions();
   }
-  else if(pswdLength < 8 || pswdLength > 128) {
+  else if (pswdLength < 8 || pswdLength > 128) {
     window.alert("Required password length is 8 - 128 characters, please try again.");
+    // re-run from start if not valid response, so you don't have to click through every option to restart.
     allOptions();
   }
   else if (isNaN(pswdLength)) {
@@ -43,26 +49,33 @@ function allOptions() {
   }
   else {
     isValid = true;
-  
-  return {wantLowercase, wantUppercase, wantNumbers, wantCharacters, pswdLength}
+
+    return { wantLowercase, wantUppercase, wantNumbers, wantCharacters, pswdLength }
   }
 
 }
 
-// pull random items from arrays and compile them according to user choices
+// function to pull random items from array and add them to var userPassword, according to user choices.
 function generatePassword() {
   var answers = allOptions();
+
+  // throw it all in one big array
   var compiledPswd = [];
+
+  // hold random array items in a string for text output
   var userPassword = "";
+
+  // checking to make sure answers has value
   console.log(answers);
+
   if (answers.wantLowercase) {
     for (var x of lowerCase)
-    compiledPswd.push(x);
+      compiledPswd.push(x);
   }
 
   if (answers.wantUppercase) {
     for (var x of upperCase)
-    compiledPswd.push(x);
+      compiledPswd.push(x);
   }
 
   if (answers.wantNumbers) {
@@ -74,15 +87,25 @@ function generatePassword() {
     for (var x of characters)
       compiledPswd.push(x);
   }
+
+  // testing pswdLength value
   console.log(answers.pswdLength);
+
   for (var i = 0; i < answers.pswdLength; i++) {
+
+    // testing genny pulling items
     var test = Math.floor(Math.random() * compiledPswd.length)
     console.log(test);
+
     userPassword += compiledPswd[Math.floor(Math.random() * compiledPswd.length)];
+
+    // testing userPassword is actually generated
     console.log(userPassword);
   }
-console.log(compiledPswd);
-console.log(userPassword);
+
+  // checking to make sure the genny is still running smoothly
+  console.log(compiledPswd);
+  console.log(userPassword);
 
   return userPassword;
 }
@@ -98,34 +121,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// function on password button that runs it
-
-
-// Need the following variables:
-    // !selected length of the password
-    // !array of lowercase letters
-    // !array of uppercase letters
-    // !array of numbers
-    // !array of special characters
-    // !to hold the password we're building
-    // !possibly the mega-array
-
-  // !prompt for password length --> stored in a variable
-  // !Validate the user input --> if user chooses <8 or >128, alert that they need to choose a valid password length, then they're going to need to restart OR call the function that prompts for length again
-  // !prompt --> Do they want uppercase letters?
-  // !prompt --> Do they want lowercase letters?
-  // !prompt --> Do they want numbers?
-  // !prompt --> Do they want special characters?
-  // !Validate that the user has chosen at least one character set --> if not, either have them start over OR recursively call the function that prompts for the character sets
-  // !With each of those prompts, you need an array of those character types
-    // !There needs to be at least one of each selected character type included in the password
-    // Randomly generate a character from each character set as it's chosen and add it to the end of the password that you're building (.push() for an array or .concat() for a string)
-    // for loop:
-      // for (var i = password.length - 1; i < passwordLength; i++)
-    // EITHER keep the character sets separate OR combine them to a mega-array to pull the rest of the characters from
-      // IF keeping the character sets separate, randomly generate a number to tell which array you're pulling from, then randomly generate a number to pull the character from the array (character will by array[number])
-      // IF pushing to a mega-array randomly generate a number to pull a character from the array
-      // IF pushing to a mega-array, remember to set the array back to an empty array at the start of the process!
-  // return the generated password
-
